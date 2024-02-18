@@ -20,6 +20,7 @@ const pages: { label: string; path: string }[] = [
   { label: 'Clusters', path: '/clusters' },
   { label: 'Counter', path: '/counter' },
   { label: 'formulario', path: '/formulario' },
+  { label: 'login', path: '/login' },
 ];
 
 export function UiLayout({ children }: { children: ReactNode }) {
