@@ -16,10 +16,10 @@ import {
 import toast, { Toaster } from 'react-hot-toast';
 
 const pages: { label: string; path: string }[] = [
-  { label: 'Home', path: '/account' },
-  { label: 'Nosotros', path: '/clusters' },
-  { label: '¿Cómo donar?', path: '/counter' },
-  { label: 'Postular mi terreno', path: '/prueba' },
+  { label: 'Account', path: '/account' },
+  { label: 'Clusters', path: '/clusters' },
+  { label: 'Counter', path: '/counter' },
+  { label: 'formulario', path: '/formulario' },
 ];
 
 export function UiLayout({ children }: { children: ReactNode }) {
