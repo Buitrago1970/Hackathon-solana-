@@ -14,6 +14,7 @@ import {
   ExplorerLink,
 } from '../cluster/cluster-ui';
 import toast, { Toaster } from 'react-hot-toast';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const pages: { label: string; path: string }[] = [
   { label: 'Account', path: '/account' },
@@ -24,6 +25,8 @@ const pages: { label: string; path: string }[] = [
 ];
 
 export function UiLayout({ children }: { children: ReactNode }) {
+  const queryClient = useQueryClient();
+
   const pathname = usePathname();
   const [auth, setAuth] = React.useState<any>(null);
 
@@ -110,7 +113,8 @@ export function AppModal({
   submit,
   submitDisabled,
   submitLabel,
-}: {
+}: // increment,
+{
   children: ReactNode;
   title: string;
   hide: () => void;
@@ -118,6 +122,7 @@ export function AppModal({
   submit?: () => void;
   submitDisabled?: boolean;
   submitLabel?: string;
+  // increment?: any;
 }) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 

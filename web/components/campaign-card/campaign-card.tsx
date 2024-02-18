@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { AppModal } from '../ui/ui-layout';
+import {
+  useCounterProgram,
+  useCounterProgramAccount,
+} from '../counter/counter-data-access';
+import { PublicKey } from '@solana/web3.js';
 
 export interface Campaigns {
   title: string;
@@ -12,6 +17,12 @@ export interface Campaigns {
 }
 
 export function CampaignCard(itemCampaign: Campaigns) {
+  const { accounts, getProgramAccount } = useCounterProgram();
+  let publicKey: PublicKey;
+  accounts.data?.map((account) => {
+    publicKey = account.publicKey;
+  });
+  const { increment } = useCounterProgramAccount({ counter: publicKey });
   // const progress: number = (itemCampaign.goal * itemCampaign.currentCount) / 100
   const progress: number =
     (itemCampaign.currentCount / itemCampaign.goal) * 100;
@@ -20,9 +31,16 @@ export function CampaignCard(itemCampaign: Campaigns) {
     null
   );
 
-  const handleOkContract = (item: Campaigns) => {
-    console.log('item', item);
-  };
+  const handleOkContract = useCallback(
+    async (item: Campaigns) => {
+      await increment.mutateAsync();
+      if (increment.data) {
+        console.log(increment.data);
+      }
+    },
+    [increment]
+  );
+
   return (
     <>
       <div
@@ -64,13 +82,14 @@ export function CampaignCard(itemCampaign: Campaigns) {
           </div>
         </div>
       </div>
-    <AppModal
+      <AppModal
         title={''}
         hide={() => setShow(false)}
         show={show}
         submit={() => itemSelected && handleOkContract(itemSelected)}
         submitLabel={'Continuar'}
-    >
+        // increment={increment}
+      >
         <div className="">
           <img src="/img/Media.jpg" alt="" />
           <h1 className="text-lg font-bold mt-4">{itemSelected?.title}</h1>
