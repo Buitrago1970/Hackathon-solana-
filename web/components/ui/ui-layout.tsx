@@ -57,7 +57,7 @@ export function UiLayout({ children }: { children: ReactNode }) {
       <ClusterChecker>
         <AccountChecker />
       </ClusterChecker>
-      <div className="flex-grow mx-4 lg:mx-auto">
+      <div className="">
         <Suspense
           fallback={
             <div className="text-center my-32">
