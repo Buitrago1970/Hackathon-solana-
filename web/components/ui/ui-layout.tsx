@@ -25,36 +25,48 @@ const pages: { label: string; path: string }[] = [
 
 export function UiLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const [auth, setAuth] = React.useState<any>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.document) {
+      setAuth(localStorage.getItem('auth'));
+    } else {
+      console.log('El código se está ejecutando en el servidor (Node.js).');
+    }
+  }, [auth]);
 
   return (
     <div className="h-full flex flex-col">
-      <div className="navbar  text-gray-600 flex-col md:flex-row space-y-2 md:space-y-0">
-        <div className="flex-1">
-          <Link className="btn btn-ghost normal-case text-xl" href="/">
-            <img
-              className="h-4 md:h-6"
-              alt="Solana Logo"
-              src="/img/Group 404.png"
-            />
-          </Link>
-          <ul className="menu menu-horizontal px-1 space-x-2">
-            {pages.map(({ label, path }) => (
-              <li key={path}>
-                <Link
-                  className={pathname.startsWith(path) ? 'active' : ''}
-                  href={path}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+      {auth ?? (
+        <div className="navbar  text-gray-600 flex-col md:flex-row space-y-2 md:space-y-0">
+          <div className="flex-1">
+            <Link className="btn btn-ghost normal-case text-xl" href="/">
+              <img
+                className="h-4 md:h-6"
+                alt="Solana Logo"
+                src="/img/Group 404.png"
+              />
+            </Link>
+            <ul className="menu menu-horizontal px-1 space-x-2">
+              {pages.map(({ label, path }) => (
+                <li key={path}>
+                  <Link
+                    className={pathname.startsWith(path) ? 'active' : ''}
+                    href={path}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex-none space-x-2">
+            <WalletButton />
+            <ClusterUiSelect />
+          </div>
         </div>
-        <div className="flex-none space-x-2">
-          <WalletButton />
-          <ClusterUiSelect />
-        </div>
-      </div>
+      )}
+
       <ClusterChecker>
         <AccountChecker />
       </ClusterChecker>
@@ -67,6 +79,7 @@ export function UiLayout({ children }: { children: ReactNode }) {
           }
         >
           {children}
+          {/* <Dashboard /> */}
         </Suspense>
         <Toaster position="bottom-right" />
       </div>

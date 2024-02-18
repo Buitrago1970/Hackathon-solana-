@@ -2,9 +2,10 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { auth } from '../../firebase';
-import { Router } from 'next/router';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,6 +15,7 @@ export default function Login() {
       .then((userCredentials) => {
         const user = userCredentials.user;
         localStorage.setItem('user', JSON.stringify(user));
+        router.push('/dashboard');
       })
       .catch((error) => {
         console.log(error);

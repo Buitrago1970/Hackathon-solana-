@@ -12,10 +12,11 @@ export interface Campaigns {
 
 
 export function CampaignCard(itemCampaign: Campaigns) {
+
     // const progress: number = (itemCampaign.goal * itemCampaign.currentCount) / 100
     const progress: number = ((itemCampaign.goal * itemCampaign.currentCount) / 100)
     return (
-        <div className="w-[300px] min-h-[250px] p-7 shadow-md shadow-gray-400 rounded-xl flex flex-col justify-between cursor-pointer hover:scale-110 transition-all relative">
+        <div className="w-[300px] m-4 min-h-[250px] p-7 shadow-md shadow-gray-400 rounded-xl flex flex-col justify-between cursor-pointer hover:scale-110 transition-all relative">
             <img src="/img/retono.svg" className='absolute'/>
             <div>
                 <h3 className='text-xl text-gray-600 font-bold'>{itemCampaign.title}</h3>
