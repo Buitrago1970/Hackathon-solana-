@@ -21,6 +21,7 @@ export default function Login() {
         console.log(error);
       });
   };
+
   return (
     <div className="min-h-screen bg-green-50 flex flex-col justify-center items-center">
       <div className="max-w-md w-full">

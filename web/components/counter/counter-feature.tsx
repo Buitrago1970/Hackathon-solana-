@@ -2,38 +2,39 @@
 
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletButton } from '../solana/solana-provider';
-import { AppHero, ellipsify } from '../ui/ui-layout';
-import { ExplorerLink } from '../cluster/cluster-ui';
-import { useCounterProgram } from './counter-data-access';
-import { CounterCreate, CounterList } from './counter-ui';
+
+import { CounterList } from './counter-ui';
 
 export default function CounterFeature() {
   const { publicKey } = useWallet();
-  const { programId } = useCounterProgram();
 
-  return publicKey ? (
-    <div>
-      <AppHero
-        title="Counter"
-        subtitle={
-          'You can create a new counter by clicking the "Create" button. The state of a counter is stored on-chain and can be manipulated by calling the program\'s methods (increment, decrement, set, and close).'
-        }
-      >
-        <p className="mb-6">
-          <ExplorerLink
-            path={`account/${programId}`}
-            label={ellipsify(programId.toString())}
-          />
-        </p>
-        <CounterCreate />
-      </AppHero>
-      <CounterList />
-    </div>
-  ) : (
-    <div className="max-w-4xl mx-auto">
-      <div className="hero py-[64px]">
-        <div className="hero-content text-center">
-          <WalletButton />
+  return (
+    <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="hero min-h-screen bg-base-200">
+        <div className="text-center hero-content">
+          <div className="w-full">
+            <h1 className="text-5xl font-bold">PLANTA EL CAMBIO</h1>
+            <p className="py-6">1250 Agricultures disponibles</p>
+            <div className="form-control mb-10">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder=""
+                  className="w-full pr-16 input input-lg input-bordered"
+                />
+                <button className=" absolute top-0 right-0 rounded-l-none btn btn-lg bg-slate-300">
+                  search
+                </button>
+              </div>
+            </div>
+            {publicKey ? (
+              <CounterList />
+            ) : (
+              <div className="py-10">
+                <WalletButton />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
