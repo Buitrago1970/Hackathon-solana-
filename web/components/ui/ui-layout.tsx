@@ -16,10 +16,10 @@ import {
 import toast, { Toaster } from 'react-hot-toast';
 
 const pages: { label: string; path: string }[] = [
-  { label: 'Account', path: '/account' },
-  { label: 'Clusters', path: '/clusters' },
-  { label: 'Counter', path: '/counter' },
-  { label: 'prueba', path: '/prueba' },
+  { label: 'Home', path: '/account' },
+  { label: 'Nosotros', path: '/clusters' },
+  { label: '¿Cómo donar?', path: '/counter' },
+  { label: 'Postular mi terreno', path: '/prueba' },
 ];
 
 export function UiLayout({ children }: { children: ReactNode }) {
@@ -27,13 +27,13 @@ export function UiLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="navbar bg-base-300 text-neutral-content flex-col md:flex-row space-y-2 md:space-y-0">
+      <div className="navbar  text-gray-600 flex-col md:flex-row space-y-2 md:space-y-0">
         <div className="flex-1">
           <Link className="btn btn-ghost normal-case text-xl" href="/">
             <img
               className="h-4 md:h-6"
               alt="Solana Logo"
-              src="/solana-logo.png"
+              src="/img/Group 404.png"
             />
           </Link>
           <ul className="menu menu-horizontal px-1 space-x-2">

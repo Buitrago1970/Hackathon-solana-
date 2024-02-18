@@ -50,8 +50,8 @@ export function AccountBalanceCheck({ address }: { address: PublicKey }) {
     return (
       <div className="alert alert-warning text-warning-content/80 rounded-none flex justify-center">
         <span>
-          You are connected to <strong>{cluster.name}</strong> but your account
-          is not found on this cluster.
+          Estás conectado a <strong>{cluster.name}</strong> pero tu cuenta no se
+          encuentra en este clúster.
         </span>
         <button
           className="btn btn-xs btn-neutral"
